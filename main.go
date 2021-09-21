@@ -4,18 +4,26 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/elgael06/curso_1/controllers"
 )
 
 func index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "welcome to my api")
+	fmt.Fprintf(w, "welcome to API REST on Go")
 }
 
 func main() {
-	var port int = 3040
-	fmt.Println("server run on PORT:", port)
+	port := os.Getenv("PORT")
 	http.HandleFunc("/", index)
 	http.HandleFunc("/tasks", controllers.GetAllTask)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
+	http.HandleFunc("/getFile", controllers.FileRecivedCVS)
+
+	if port == "" {
+		port = "8000"
+	}
+
+	fmt.Println("server run on PORT:", port)
+
+	log.Fatal(http.ListenAndServe((":" + port), nil))
 }
