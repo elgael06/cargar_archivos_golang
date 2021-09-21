@@ -1,13 +1,16 @@
 package data
 
-import "curso_1/src/structs"
+import "github.com/elgael06/curso_1/structs"
 
-type allTask []structs.task
-
-var tasks = allTask{
+var AllTasks = []structs.Task{
 	{
 		ID:      1,
 		Name:    "task one",
 		Content: "some content",
+	},
+	{
+		ID:      2,
+		Name:    "task two",
+		Content: "some content task",
 	},
 }

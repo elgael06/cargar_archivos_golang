@@ -1,7 +1,10 @@
 package funtions
 
-import "curso_1/src/data"
+import (
+	"github.com/elgael06/curso_1/data"
+	"github.com/elgael06/curso_1/structs"
+)
 
-func getAllTask() {
-	return data.tasks
+func GetAllTask() []structs.Task {
+	return data.AllTasks
 }
