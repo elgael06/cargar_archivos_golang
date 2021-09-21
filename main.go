@@ -9,13 +9,14 @@ import (
 )
 
 func index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "welcome to my api")
+	fmt.Fprintf(w, "welcome to API REST on Go")
 }
 
 func main() {
-	var port int = 3040
+	var port int = 8080
 	fmt.Println("server run on PORT:", port)
 	http.HandleFunc("/", index)
 	http.HandleFunc("/tasks", controllers.GetAllTask)
+	http.HandleFunc("/getFile", controllers.FileRecivedCVS)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
 }

@@ -1,4 +1,4 @@
 buildcmd = "go build -o ./serve"
 excludedir = [".git", "tmp", "docs", "vendor"]
-projectdir = "/home/cgvalenzuelac/go/src/curso_1"
+projectdir = "/workspaces/curso_1"
 runcmd = "./serve"
