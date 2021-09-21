@@ -1,0 +1,4 @@
+buildcmd = "go build -o ./tmp_bin"
+excludedir = [".git", "tmp", "docs", "vendor"]
+projectdir = "/home/cgvalenzuelac/go/src/curso_1/src"
+runcmd = "./tmp_bin"
