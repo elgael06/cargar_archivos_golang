@@ -13,7 +13,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	var port int = 8080
+	var port int = 8000
 	fmt.Println("server run on PORT:", port)
 	http.HandleFunc("/", index)
 	http.HandleFunc("/tasks", controllers.GetAllTask)
