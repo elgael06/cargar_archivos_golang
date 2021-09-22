@@ -4,16 +4,21 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+
+	"github.com/elgael06/curso_1/funtions"
 )
 
 func FileRecivedCVS(w http.ResponseWriter, r *http.Request) {
-	file, h, err := r.FormFile("cvs")
-	fmt.Println("h->", h)
-	fmt.Println("file->", file)
-	fmt.Println("err->", err)
+	r.ParseMultipartForm(20000)
+	file, info, err := r.FormFile("cvs")
 	if err != nil {
 		json.NewEncoder(w).Encode(err.Error())
 		return
 	}
-	json.NewEncoder(w).Encode("{message:'ok'}")
+	fmt.Println("name->", info.Filename)
+
+	var dataFile string = funtions.ReaderFile(file)
+	content := funtions.SplitString(dataFile, "\n")
+	orderData := funtions.GetHeaderFileToJSON(content)
+	json.NewEncoder(w).Encode(orderData)
 }
