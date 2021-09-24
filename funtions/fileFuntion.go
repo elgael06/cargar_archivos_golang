@@ -16,6 +16,7 @@ func ReaderFile(file multipart.File) string {
 	io.Copy(&buf, file)
 	contents := buf.String()
 	buf.Reset()
+	fmt.Println(contents)
 	return contents
 }
 
