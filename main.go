@@ -9,15 +9,18 @@ import (
 	"github.com/elgael06/curso_1/controllers"
 )
 
-func index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "welcome to API REST on Go")
-}
+// func index(w http.ResponseWriter, r *http.Request) {
+// 	http.ServeFile(w, r, "pages/index.html")
+// }
 
 func main() {
 	port := os.Getenv("PORT")
-	http.HandleFunc("/", index)
-	http.HandleFunc("/tasks", controllers.GetAllTask)
-	http.HandleFunc("/getFile", controllers.FileRecivedCVS)
+	fs := http.FileServer(http.Dir("./pages"))
+
+	// http.HandleFunc("/", index)
+	http.HandleFunc("/api/tasks", controllers.GetAllTask)
+	http.HandleFunc("/api/getFile", controllers.FileRecivedCVS)
+	http.Handle("/", fs)
 
 	if port == "" {
 		port = "8000"
